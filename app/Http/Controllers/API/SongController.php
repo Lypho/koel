@@ -36,12 +36,7 @@ class SongController extends Controller
             return (new S3Streamer($song))->stream();
         }
 
-        // If `transcode` parameter isn't passed, the default is to only transcode FLAC.
-        if ($transcode === null && ends_with(mime_content_type($song->path), 'flac')) {
-            $transcode = true;
-        }
-
-        $streamer = null;
+             $streamer = null;
 
         if ($transcode) {
             $streamer = new TranscodingStreamer(
